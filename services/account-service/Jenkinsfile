@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    environment {
+        HARBOR_CREDS = credentials('harbor-credentials')
+        DOCKER_REGISTRY = 'harbor.local/banking-demo'
+        IMAGE_NAME = 'account-service'
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+    }
+    stages {
+        stage('Docker Build & Push') {
+            steps {
+                script {
+                    sh 'docker build -f services/account-service/Dockerfile -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .'
+                    sh 'echo "$HARBOR_CREDS_PSW" | docker login harbor.local -u "$HARBOR_CREDS_USR" --password-stdin'
+                    sh 'docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}'
+                }
+            }
+        }
+    }
+}
