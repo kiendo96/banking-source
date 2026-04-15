@@ -1,0 +1,7 @@
+  - name: nodejs
+    image: node:18-alpine
+    command:
+    - sleep
+    args:
+    - 99d
+    tty: true

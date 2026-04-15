@@ -1,0 +1,7 @@
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:v1.14.0-debug
+    command:
+    - sleep
+    args:
+    - 99d
+    tty: true

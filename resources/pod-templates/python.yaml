@@ -1,0 +1,7 @@
+  - name: python
+    image: python:3.9-slim
+    command:
+    - sleep
+    args:
+    - 99d
+    tty: true
