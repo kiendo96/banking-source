@@ -2,5 +2,6 @@
 
 standardPipeline(
     serviceName: 'account-service',
-    dockerfilePath: 'services/account-service/Dockerfile'
+    dockerfilePath: 'services/account-service/Dockerfile',
+    tools: ['python', 'kaniko', 'git']
 )
