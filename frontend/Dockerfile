@@ -4,11 +4,11 @@ FROM node:20-alpine AS build
 WORKDIR /app
 
 # Copy package files trước để cache npm install
-COPY package*.json ./
+COPY frontend/package*.json ./
 RUN npm install
 
 # Copy source code
-COPY . .
+COPY frontend/ ./
 
 # Build React
 RUN npm run build
@@ -23,7 +23,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Copy nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
