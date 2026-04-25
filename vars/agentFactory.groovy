@@ -6,7 +6,7 @@ apiVersion: v1
 kind: Pod
 spec:
   hostAliases:
-  - ip: "192.168.56.200"
+  - ip: "192.168.56.201"
     hostnames:
     - "harbor.local"
   containers:
